@@ -6,33 +6,27 @@
 <title>Beneath the Willow</title>
 <style>
 body{margin:0;background:#ffffff;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:Georgia, serif;}
-.book-wrap{width:92%;max-width:360px;margin-top:20px;aspect-ratio:3/4.4;position:relative;display:flex;filter:drop-shadow(0 15px 25px rgba(0,0,0,0.15));}
-.spiral{width:30px;background:#f5f7fa;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:14px 0 14px 2px;border-radius:8px 0 0 8px;border-right:1px solid #d0d5dc;}
-.wire{width:26px;height:14px;position:relative;}
-.wire::before,.wire::after{content:'';position:absolute;left:0;width:24px;height:7px;border:1.6px solid #1a1a1a;border-radius:50%;background:linear-gradient(to bottom, #2a2a2a, #000);box-shadow:0 1px 1px rgba(0,0,0,0.3);}
-.wire::before{top:0;transform:perspective(20px) rotateX(30deg);}
-.wire::after{top:5px;transform:perspective(20px) rotateX(30deg);opacity:0.9;}
-.pages{flex:1;position:relative;background:#121a0a;border-radius:0 12px 12px 0;overflow:hidden;}
+.book-wrap{width:92%;max-width:360px;margin-top:20px;aspect-ratio:3/4.4;display:flex;filter:drop-shadow(0 15px 25px rgba(0,0,0,0.15));}
+.spiral{width:42px;background:#fff;border-radius:8px 0 0 8px;overflow:hidden;}
+.spiral img{width:100%;height:100%;object-fit:cover;}
+.pages{flex:1;position:relative;border-radius:0 12px 12px 0;overflow:hidden;margin-left:-4px;}
 .cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;display:none;}
 .cover{display:block;}
 .cover img{width:100%;height:100%;object-fit:cover;border-radius:0 12px 12px 0;}
-.page{display:none;background:#fdf6e3;padding:26px;box-sizing:border-box;color:#3d2b1f;line-height:2.1;font-size:14.5px;background-image:repeating-linear-gradient(transparent, transparent 27px, #e8d5b0 27px, #e8d5b0 28px);}
+.page{display:none;background:#fdf6e3;padding:26px;box-sizing:border-box;color:#3d2b1f;line-height:2.1;}
 .page.active{display:block;}
 .btns{display:flex;gap:16px;margin-top:20px;}
-.btns button{background:#8b6e1e;color:#fff3c2;border:none;padding:12px 26px;border-radius:28px;font-weight:bold;font-size:13px;cursor:pointer;}
+.btns button{background:#8b6e1e;color:#fff3c2;border:none;padding:12px 26px;border-radius:28px;font-weight:bold;cursor:pointer;}
 </style>
 </head>
 <body>
 
 <div class="book-wrap">
-  <div class="spiral">
-    <div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div>
-    <div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div>
-  </div>
+  <div class="spiral"><img src="assets/spiral.png"></div>
   <div class="pages">
     <div id="cover" class="cover"><img src="assets/beneath-the-willow.png"></div>
-    <div id="p1" class="page"><h2 style="color:#8B6914">Dear Diary,</h2><p>Beneath the willow, I find peace...</p><p>This diary belongs to Tsulalu.</p></div>
-    <div id="p2" class="page"><p>Date: ___ / ___ / ___</p><p>Write your thoughts here...</p></div>
+    <div id="p1" class="page"><h2>Dear Diary,</h2><p>This diary belongs to Tsulalu.</p></div>
+    <div id="p2" class="page">Write here...</div>
   </div>
 </div>
 
