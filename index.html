@@ -8,37 +8,78 @@
 body{margin:0;background:#fff;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:Georgia, serif;}
 .book-wrap{width:92%;max-width:360px;margin-top:20px;aspect-ratio:3/4.4;position:relative;display:flex;perspective:1500px;}
 .pages{flex:1;margin-left:14px;position:relative;transform-style:preserve-3d;}
-.cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;transform-origin:left center;transition:transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);backface-visibility:hidden;border-radius:0 14px 14px 0;box-shadow:0 2px 15px rgba(0,0,0,0.2);}
-.cover{z-index:4;}
-#p1{z-index:3;}
-#p2{z-index:2;}
-.flipped{transform:rotateY(-180deg);box-shadow:-10px 0 20px rgba(0,0,0,0.3);}
+.cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;transform-origin:left center;transition:transform 0.9s cubic-bezier(0.645,0.045,0.355,1);backface-visibility:hidden;border-radius:0 14px 14px 0;box-shadow:0 2px 15px rgba(0,0,0,0.2);}
+.flipped{transform:rotateY(-180deg);}
 .cover img{width:100%;height:100%;object-fit:cover;border-radius:0 14px 14px 0;}
-.page{background:#fdf6e3;padding:26px;box-sizing:border-box;color:#3d2b1f;line-height:2.1;display:block;}
+.page{background:#fdf6e3;padding:18px 22px;box-sizing:border-box;color:#3d2b1f;display:block;}
+.blank{background:#fdf6e3;background-image:repeating-linear-gradient(transparent, transparent 27px, rgba(139,110,30,0.15) 28px);}
+/* spine */
 .spine{position:absolute;left:0;top:0;bottom:0;width:16px;background:#121a0a;z-index:20;border-radius:6px 0 0 6px;display:flex;flex-direction:column;justify-content:space-between;padding:16px 0;align-items:center;}
 .spine span{width:10px;height:12px;background:#000;border-radius:2px;}
 .spiral{position:absolute;left:-10px;top:0;bottom:0;width:40px;display:flex;flex-direction:column;justify-content:space-between;padding:14px 0;z-index:30;pointer-events:none;}
 .wire{width:38px;height:16px;position:relative;}
-.wire::before,.wire::after{content:'';position:absolute;left:5px;width:26px;height:7px;border:1.6px solid #0a0a0a;border-radius:50%;background:linear-gradient(to bottom, #222, #000);}
-.wire::before{top:0;}
-.wire::after{top:6px;}
-.btns{display:flex;gap:16px;margin-top:24px;}
-.btns button{background:#8b6e1e;color:#fff3c2;border:none;padding:12px 28px;border-radius:28px;font-weight:bold;cursor:pointer;transition:0.2s;}
-.btns button:active{transform:scale(0.95);}
+.wire::before,.wire::after{content:'';position:absolute;left:5px;width:26px;height:7px;border:1.6px solid #0a0a0a;border-radius:50%;background:linear-gradient(to bottom,#222,#000);}
+.wire::before{top:0;}.wire::after{top:6px;}
+.btns{display:flex;gap:16px;margin:20px 0;}
+.btns button{background:#121a0a;color:#fdf6e3;border:none;padding:12px 28px;border-radius:28px;font-weight:bold;cursor:pointer;}
+.date-top{text-align:right;font-size:12px;color:#8B6E1E;margin:0 0 15px;border-bottom:1px solid rgba(139,110,30,0.3);padding-bottom:6px;}
 </style>
 </head>
 <body>
 
 <div class="book-wrap">
   <div class="spine"><span></span><span></span><span></span><span></span></div>
-  <div class="spiral">
-    <div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div>
-    <div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div>
-  </div>
+  <div class="spiral"><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div></div>
+
   <div class="pages">
     <div id="cover" class="cover"><img src="assets/beneath-the-willow.png"></div>
-    <div id="p1" class="page"><h2 style="color:#8B6914">Dear Diary,</h2><p>Beneath the willow, I find peace...</p><p style="margin-top:50px;font-style:italic;">This diary belongs to Tsulalu.</p></div>
-    <div id="p2" class="page"><p><b>Date:</b> ___ / ___ / ___</p><p>Write your thoughts here...</p></div>
+
+    <!-- P1 NAME PAGE -->
+    <div id="p1" class="page">
+      <div style="border:2px dashed #8B6E1E; height:100%; padding:20px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; text-align:center;">
+        <h2 style="color:#121a0a;font-size:20px;letter-spacing:2px;margin:0;">THIS DIARY BELONGS TO</h2>
+        <div style="margin:30px 0;border-bottom:1.5px solid #8B6E1E;padding-bottom:8px;">
+          <p style="font-family:cursive;font-size:34px;color:#8B6914;margin:0;">Tsulalu</p>
+        </div>
+        <div style="text-align:left;font-size:13px;line-height:2.8;">
+          <p><b>Phone:</b> ______________________</p>
+          <p><b>Email:</b> ______________________</p>
+          <p><b>Address:</b> ____________________</p>
+          <p style="margin-top:25px;font-size:11px;text-align:center;color:#8B6E1E;">If found, please return with love ♡</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 CALENDAR -->
+    <div id="p2" class="page">
+      <h3 style="text-align:center;color:#121a0a;margin:0 0 12px;letter-spacing:1px;font-size:16px;">2026 CALENDAR</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:9.5px;line-height:1.4;">
+        <div><b>JAN</b><br>S M T W T F S<br> - - - 1 2 3<br>4 5 6 7 8 9 10<br>11 12 13 14 15 16 17</div>
+        <div><b>FEB</b><br>S M T W T F S<br>1 2 3 4 5 6 7<br>8 9 10 11 12 13 14<br>15 16 17 18 19 20 21</div>
+        <div><b>MAR</b><br>S M T W T F S<br>1 2 3 4 5 6 7<br>8 9 10 11 12 13 14<br>15 16 17 18 19 20 21</div>
+        <div><b>APR</b><br>S M T W T F S<br> - - 1 2 3 4 5<br>6 7 8 9 10 11 12<br>13 14 15 16 17 18 19</div>
+        <div><b>MAY</b><br>S M T W T F S<br> - - - - 1 2 3<br>4 5 6 7 8 9 10<br>11 12 13 14 15 16 17</div>
+        <div><b>JUN</b><br>S M T W T F S<br>1 2 3 4 5 6 7<br>8 9 10 11 12 13 14<br>15 16 17 18 19 20 21</div>
+        <div><b>JUL</b><br>S M T W T F S<br> - 1 2 3 4 5 6<br>7 8 9 10 11 12 13<br>14 15 16 17 18 19 20</div>
+        <div><b>AUG</b><br>S M T W T F S<br> - - - - 1 2 3<br>4 5 6 7 8 9 10<br>11 12 13 14 15 16 17</div>
+        <div><b>SEP</b><br>S M T W T F S<br>1 2 3 4 5 6 7<br>8 9 10 11 12 13 14<br>15 16 17 18 19 20 21</div>
+        <div><b>OCT</b><br>S M T W T F S<br> - - 1 2 3 4 5<br>6 7 8 9 10 11 12<br>13 14 15 16 17 18 19</div>
+        <div><b>NOV</b><br>S M T W T F S<br> - - - - - 1 2<br>3 4 5 6 7 8 9<br>10 11 12 13 14 15 16</div>
+        <div><b>DEC</b><br>S M T W T F S<br>1 2 3 4 5 6 7<br>8 9 10 11 12 13 14<br>15 16 17 18 19 20 21</div>
+      </div>
+    </div>
+
+    <!-- P3-P12 BLANK CREAM PAGES -->
+    <div id="p3" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p4" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p5" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p6" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p7" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p8" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p9" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p10" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p11" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p12" class="page blank"><p class="date-top">Date: __ / __ / __</p><p style="text-align:center;margin-top:60px;color:#8B6E1E;font-size:12px;">— Beneath the Willow —<br>To be continued...</p></div>
   </div>
 </div>
 
@@ -49,28 +90,18 @@ body{margin:0;background:#fff;display:flex;flex-direction:column;align-items:cen
 
 <script>
 let current = 0;
-const pages = [document.getElementById('cover'), document.getElementById('p1'), document.getElementById('p2')];
-
-function next(){
-  if(current < pages.length){
-    pages[current].classList.add('flipped');
-    current++;
-    updateZ();
-  }
-}
-function prev(){
-  if(current > 0){
-    current--;
-    pages[current].classList.remove('flipped');
-    updateZ();
-  }
-}
-function updateZ(){
-  pages.forEach((p, idx) => {
-    if(idx < current) p.style.zIndex = idx;
-    else p.style.zIndex = pages.length - idx + 2;
-  });
-}
+const pages = [
+  document.getElementById('cover'),
+  document.getElementById('p1'),document.getElementById('p2'),
+  document.getElementById('p3'),document.getElementById('p4'),
+  document.getElementById('p5'),document.getElementById('p6'),
+  document.getElementById('p7'),document.getElementById('p8'),
+  document.getElementById('p9'),document.getElementById('p10'),
+  document.getElementById('p11'),document.getElementById('p12')
+];
+function next(){ if(current < pages.length){ pages[current].classList.add('flipped'); current++; updateZ(); } }
+function prev(){ if(current > 0){ current--; pages[current].classList.remove('flipped'); updateZ(); } }
+function updateZ(){ pages.forEach((p, idx) => { if(idx < current) p.style.zIndex = idx; else p.style.zIndex = pages.length - idx + 10; }); }
 updateZ();
 </script>
 </body>
