@@ -6,8 +6,12 @@
 <title>Beneath the Willow</title>
 <style>
 body{margin:0;background:#121a0a;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:Georgia, serif;}
-.book-wrap{width:92%;max-width:380px;margin-top:25px;aspect-ratio:3/4.5;position:relative;}
-.cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;border-radius:14px;overflow:hidden;display:none;}
+.book-wrap{width:92%;max-width:380px;margin-top:25px;aspect-ratio:3/4.5;position:relative;display:flex;}
+.rings{width:30px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:15px 0;z-index:10;}
+.ring{width:26px;height:26px;border-radius:50%;background: linear-gradient(145deg, #ffffff, #d0d0d0);border:2px solid #ffffff;box-shadow: inset 0 1px 2px white, 0 2px 4px rgba(0,0,0,0.5);position:relative;flex-shrink:0;}
+.ring::after{content:'';position:absolute;top:50%;left:-6px;width:16px;height:6px;background:#e0e0e0;border-radius:3px;transform:translateY(-50%);}
+.pages-box{flex:1;position:relative;}
+.cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;border-radius:0 14px 14px 0;overflow:hidden;display:none;}
 .cover{display:block;box-shadow:0 20px 50px rgba(0,0,0,0.7);}
 .cover img{width:100%;height:100%;object-fit:cover;}
 .page{display:none;background:#fdf6e3;padding:28px;box-sizing:border-box;color:#3d2b1f;line-height:2.1;font-size:15px;background-image: repeating-linear-gradient(transparent, transparent 28px, #e8d5b0 28px, #e8d5b0 29px);}
@@ -15,24 +19,22 @@ body{margin:0;background:#121a0a;display:flex;flex-direction:column;align-items:
 .page h2{color:#8B6914;margin-top:5px;}
 .signature{text-align:right;font-style:italic;color:#8B6914;font-size:20px;margin-top:60px;}
 .btns{display:flex;gap:18px;margin-top:22px;}
-.btns button{background:#8b6e1e;color:#fff3c2;border:none;padding:13px 28px;border-radius:28px;font-weight:bold;font-size:14px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
+.btns button{background:#8b6e1e;color:#fff3c2;border:none;padding:13px 28px;border-radius:28px;font-weight:bold;font-size:14px;cursor:pointer;}
 </style>
 </head>
 <body>
 
 <div class="book-wrap">
-  <div id="cover" class="cover">
-    <img src="assets/beneath-the-willow.png">
+  <!-- 10 WHITE RINGS -->
+  <div class="rings">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
   </div>
-  <div id="p1" class="page">
-    <h2>Dear Diary,</h2>
-    <p>Beneath the willow, I find peace...</p>
-    <p>This diary belongs to Tsulalu.</p>
-    <div class="signature">Tsulalu</div>
-  </div>
-  <div id="p2" class="page">
-    <p>Date: ___ / ___ / ___</p>
-    <p>Write your thoughts here...</p>
+
+  <div class="pages-box">
+    <div id="cover" class="cover"><img src="assets/beneath-the-willow.png"></div>
+    <div id="p1" class="page"><h2>Dear Diary,</h2><p>Beneath the willow, I find peace...</p><p>This diary belongs to Tsulalu.</p><div class="signature">Tsulalu</div></div>
+    <div id="p2" class="page"><p>Date: ___ / ___ / ___</p><p>Write here...</p></div>
   </div>
 </div>
 
@@ -42,7 +44,7 @@ body{margin:0;background:#121a0a;display:flex;flex-direction:column;align-items:
 </div>
 
 <script>
-let i=0; //0=cover,1=p1,2=p2
+let i=0;
 function show(){
   document.getElementById('cover').style.display = i==0 ? 'block' : 'none';
   document.getElementById('p1').classList.toggle('active', i==1);
