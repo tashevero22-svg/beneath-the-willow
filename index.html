@@ -1,32 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta name="theme-color" content="#20290f">
-
-  <title>Beneath the Willow</title>
-
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beneath the Willow - Diary</title>
+<style>
+  body{margin:0;background:#20290f;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family: Georgia, serif;}
+ .book{width:350px;height:500px;position:relative;perspective:1500px;}
+ .page{width:100%;height:100%;position:absolute;top:0;left:0;transform-origin:left;transition:transform 0.8s;transform-style:preserve-3d;border-radius:0 12px 12px 0;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+ .page-front,.page-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:0 12px 12px 0;overflow:hidden;}
+ .page-back{transform:rotateY(180deg);}
+ .cover.page-front{background:url('assets/beneath-the-willow.png') center/cover no-repeat #2a3d1a;}
+ .paper.page-front,.paper.page-back{background:#fdf6e3;padding:25px;box-sizing:border-box;color:#3d2b1f;line-height:1.8;font-size:14px;background-image: repeating-linear-gradient(transparent, transparent 27px, #e7d5b3 27px, #e7d5b3 28px);}
+ .paper h2{color:#8B6914;margin-top:0;}
+ .signature{position:absolute;bottom:15px;right:20px;font-style:italic;color:#8B6914;font-size:18px;}
+ .flipped{transform:rotateY(-180deg);}
+ .controls{position:fixed;bottom:20px;left:0;right:0;text-align:center;color:#8B6914;}
+ .controls button{background:#8B6914;color:#20290f;border:none;padding:10px 20px;border-radius:20px;margin:0 10px;font-weight:bold;cursor:pointer;}
+</style>
 </head>
-
 <body>
 
-  <main class="poster" aria-label="Beneath the Willow">
+<div class="book" id="book">
+  <!-- COVER -->
+  <div class="page cover" style="z-index:5;" onclick="flip(this)">
+    <div class="page-front"></div>
+    <div class="page-back" style="background:#fdf6e3;"></div>
+  </div>
 
-    <img
-      src="assets/beneath-the-willow.png"
-      alt="Beneath the Willow — illustrated willow tree, rocks and flowers"
-    >
+  <!-- PAGE 1 -->
+  <div class="page paper" style="z-index:4;" onclick="flip(this)">
+    <div class="page-front">
+      <h2>Dear Diary,</h2>
+      <p>Beneath the willow, I find peace...</p>
+      <p>This diary belongs to Tsulalu.</p>
+      <div class="signature">Tsulalu</div>
+    </div>
+    <div class="page-back"><p>Page 2 - My thoughts today...</p></div>
+  </div>
 
-  </main>
+  <!-- PAGE 2 -->
+  <div class="page paper" style="z-index:3;" onclick="flip(this)">
+    <div class="page-front"><p>Write your entry here...</p></div>
+    <div class="page-back"><p>More memories...</p></div>
+  </div>
 
-  <script src="script.js"></script>
+  <!-- LAST PAGE -->
+  <div class="page paper" style="z-index:2;">
+    <div class="page-front"><p>The end for now...</p><div class="signature">Tsulalu</div></div>
+    <div class="page-back"></div>
+  </div>
+</div>
 
+<div class="controls">
+  <button onclick="prevPage()">← Prev</button>
+  <span style="color:#fdf6e3;">Click pages to flip</span>
+  <button onclick="nextPage()">Next →</button>
+</div>
+
+<script>
+let current=0; const pages=document.querySelectorAll('.page');
+function flip(el){
+  if(el.classList.contains('flipped')) return;
+  el.classList.add('flipped'); el.style.zIndex=10+current; current++;
+}
+function nextPage(){
+  if(current<pages.length){pages[current].classList.add('flipped'); pages[current].style.zIndex=10+current; current++;}
+}
+function prevPage(){
+  if(current>0){current--; pages[current].classList.remove('flipped'); setTimeout(()=>{pages[current].style.zIndex=5-current;},800);}
+}
+</script>
 </body>
 </html>
