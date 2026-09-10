@@ -6,13 +6,16 @@
 <title>Beneath the Willow</title>
 <style>
 body{margin:0;background:#ffffff;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:Georgia, serif;}
-.book-wrap{width:92%;max-width:360px;margin-top:20px;aspect-ratio:3/4.4;display:flex;filter:drop-shadow(0 15px 25px rgba(0,0,0,0.15));}
-.spiral{width:42px;background:#fff;border-radius:8px 0 0 8px;overflow:hidden;}
-.spiral img{width:100%;height:100%;object-fit:cover;}
-.pages{flex:1;position:relative;border-radius:0 12px 12px 0;overflow:hidden;margin-left:-4px;}
+.book-wrap{width:92%;max-width:360px;margin-top:20px;aspect-ratio:3/4.4;position:relative;border-radius:12px;overflow:hidden;box-shadow:0 15px 30px rgba(0,0,0,0.25);}
+.spiral{position:absolute;left:6px;top:0;bottom:0;width:24px;display:flex;flex-direction:column;justify-content:space-between;padding:14px 0;z-index:10;}
+.wire{width:22px;height:11px;position:relative;}
+.wire::before,.wire::after{content:'';position:absolute;left:0;width:20px;height:5px;border:1.3px solid #000;border-radius:50%;background:transparent;}
+.wire::before{top:0;}
+.wire::after{top:4px;}
+.pages{width:100%;height:100%;position:relative;}
 .cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;display:none;}
 .cover{display:block;}
-.cover img{width:100%;height:100%;object-fit:cover;border-radius:0 12px 12px 0;}
+.cover img{width:100%;height:100%;object-fit:cover;}
 .page{display:none;background:#fdf6e3;padding:26px;box-sizing:border-box;color:#3d2b1f;line-height:2.1;}
 .page.active{display:block;}
 .btns{display:flex;gap:16px;margin-top:20px;}
@@ -22,11 +25,15 @@ body{margin:0;background:#ffffff;display:flex;flex-direction:column;align-items:
 <body>
 
 <div class="book-wrap">
-  <div class="spiral"><img src="assets/spiral.png"></div>
+  <!-- SMALL BLACK RINGS ON TOP OF DARK OLIVE -->
+  <div class="spiral">
+    <div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div>
+    <div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div>
+  </div>
   <div class="pages">
     <div id="cover" class="cover"><img src="assets/beneath-the-willow.png"></div>
-    <div id="p1" class="page"><h2>Dear Diary,</h2><p>This diary belongs to Tsulalu.</p></div>
-    <div id="p2" class="page">Write here...</div>
+    <div id="p1" class="page"><h2>Dear Diary,</h2><p>This belongs to Tsulalu.</p></div>
+    <div id="p2" class="page">Date: ___ / ___ / ___</div>
   </div>
 </div>
 
