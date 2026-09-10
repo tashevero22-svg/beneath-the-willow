@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beneath the Willow</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#fff;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:Georgia, serif;}
 .book-wrap{width:92%;max-width:360px;margin-top:20px;aspect-ratio:3/4.4;position:relative;display:flex;perspective:1800px;}
@@ -11,7 +12,7 @@ body{margin:0;background:#fff;display:flex;flex-direction:column;align-items:cen
 .cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;transform-origin:left center;transition:transform 0.9s cubic-bezier(0.645,0.045,0.355,1);backface-visibility:hidden;border-radius:0 14px 14px 0;box-shadow:0 2px 15px rgba(0,0,0,0.2);}
 .flipped{transform:rotateY(-180deg);pointer-events:none;}
 .cover img{width:100%;height:100%;object-fit:cover;border-radius:0 14px 14px 0;}
-.page{background:#fdf6e3;padding:18px 22px;box-sizing:border-box;color:#3d2b1f;display:block;}
+.page{background:#fdf6e3;padding:18px 22px;box-sizing:border-box;color:#3d2b1f;display:block;overflow:hidden;}
 .blank{background:#fdf6e3;background-image:repeating-linear-gradient(transparent, transparent 27px, rgba(139,110,30,0.15) 28px);}
 .spine{position:absolute;left:0;top:0;bottom:0;width:16px;background:#121a0a;z-index:20;border-radius:6px 0 0 6px;display:flex;flex-direction:column;justify-content:space-between;padding:16px 0;align-items:center;}
 .spine span{width:10px;height:12px;background:#000;border-radius:2px;}
@@ -19,9 +20,15 @@ body{margin:0;background:#fff;display:flex;flex-direction:column;align-items:cen
 .wire{width:38px;height:16px;position:relative;}
 .wire::before,.wire::after{content:'';position:absolute;left:5px;width:26px;height:7px;border:1.6px solid #e8dcc0;border-radius:50%;background:linear-gradient(to bottom,#fdf6e3,#e8dcc0);box-shadow:0 1px 2px rgba(0,0,0,0.2);}
 .wire::before{top:0;}.wire::after{top:6px;}
-.btns{display:flex;gap:16px;margin:20px 0;}
-.btns button{background:#121a0a;color:#fdf6e3;border:none;padding:12px 28px;border-radius:28px;font-weight:bold;cursor:pointer;}
-.date-top{text-align:right;font-size:12px;color:#8B6E1E;margin:0 0 15px;border-bottom:1px solid rgba(139,110,30,0.3);padding-bottom:6px;}
+.btns{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap;justify-content:center;}
+.btns button{background:#121a0a;color:#fdf6e3;border:none;padding:12px 22px;border-radius:28px;font-weight:bold;cursor:pointer;}
+.date-top{text-align:right;font-size:12px;color:#8B6E1E;margin:0 0 8px;border-bottom:1px solid rgba(139,110,30,0.3);padding-bottom:6px;display:flex;justify-content:space-between;align-items:center;}
+.write-area{width:100%;height:calc(100% - 36px);outline:none;border:none;background:transparent;font-size:14px;line-height:28px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;font-family:Georgia, serif;}
+.write-area:empty:before{content:attr(data-placeholder);color:#b9a57a;font-style:italic;}
+.cursive{font-family:'Dancing Script','Brush Script MT',cursive!important;font-size:20px!important;color:#4a2c17;}
+.normal{font-family:Georgia, serif!important;font-size:14px!important;color:#3d2b1f;}
+.font-btn{font-size:10px;padding:4px 9px;border-radius:12px;border:1px solid #8B6E1E;background:#fdf6e3;color:#121a0a;cursor:pointer;margin-left:4px;}
+.font-btn.active{background:#121a0a;color:#fdf6e3;}
 </style>
 </head>
 <body>
@@ -46,70 +53,59 @@ body{margin:0;background:#fff;display:flex;flex-direction:column;align-items:cen
         <div style="border:1px solid #8B6E1E;padding:3px;border-radius:3px;"><div style="text-align:center;font-weight:bold;font-size:7px;background:#121a0a;color:#fdf6e3;padding:1px;">DEC</div><div style="display:grid;grid-template-columns:repeat(7,1fr);font-size:5.5px;text-align:center;gap:1px;margin-top:2px;"><span style="color:#8B6E1E">S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span></span><span></span><span style="border:0.5px solid #d0c4a8">1</span><span style="border:0.5px solid #d0c4a8">2</span><span style="border:0.5px solid #d0c4a8">3</span><span style="border:0.5px solid #d0c4a8">4</span><span style="border:0.5px solid #d0c4a8">5</span><span style="border:0.5px solid #d0c4a8">6</span><span style="border:0.5px solid #d0c4a8">7</span><span style="border:0.5px solid #d0c4a8">8</span><span style="border:0.5px solid #d0c4a8">9</span><span style="border:0.5px solid #d0c4a8">10</span><span style="border:0.5px solid #d0c4a8">11</span><span style="border:0.5px solid #d0c4a8">12</span><span style="border:0.5px solid #d0c4a8">13</span><span style="border:0.5px solid #d0c4a8">14</span><span style="border:0.5px solid #d0c4a8">15</span><span style="border:0.5px solid #d0c4a8">16</span><span style="border:0.5px solid #d0c4a8">17</span><span style="border:0.5px solid #d0c4a8">18</span><span style="border:0.5px solid #d0c4a8">19</span><span style="border:0.5px solid #d0c4a8">20</span><span style="border:0.5px solid #d0c4a8">21</span><span style="border:0.5px solid #d0c4a8">22</span><span style="border:0.5px solid #d0c4a8">23</span><span style="border:0.5px solid #d0c4a8">24</span><span style="border:0.5px solid #d0c4a8">25</span><span style="border:0.5px solid #d0c4a8">26</span><span style="border:0.5px solid #d0c4a8">27</span><span style="border:0.5px solid #d0c4a8">28</span><span style="border:0.5px solid #d0c4a8">29</span><span style="border:0.5px solid #d0c4a8">30</span><span style="border:0.5px solid #d0c4a8">31</span></div></div>
       </div>
     </div>
-    <div id="p3" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p4" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p5" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p6" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p7" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p8" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p9" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p10" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p11" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
-    <div id="p12" class="page blank"><p class="date-top">Date: __ / __ / __</p></div>
+    <div id="p3" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" id="btn-p3-normal" onclick="setFont('p3','normal')">Normal</button><button class="font-btn" id="btn-p3-cursive" onclick="setFont('p3','cursive')">✒ Cursive</button></span></div><div id="write-p3" class="write-area normal" contenteditable="true" data-placeholder="Start writing here... tap Cursive for handwriting"></div></div>
+    <div id="p4" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p4','normal')">Normal</button><button class="font-btn" onclick="setFont('p4','cursive')">✒ Cursive</button></span></div><div id="write-p4" class="write-area normal" contenteditable="true" data-placeholder="Continue..."></div></div>
+    <div id="p5" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p5','normal')">Normal</button><button class="font-btn" onclick="setFont('p5','cursive')">✒ Cursive</button></span></div><div id="write-p5" class="write-area normal" contenteditable="true" data-placeholder="Write here..."></div></div>
+    <div id="p6" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p6','normal')">Normal</button><button class="font-btn" onclick="setFont('p6','cursive')">✒ Cursive</button></span></div><div id="write-p6" class="write-area normal" contenteditable="true" data-placeholder="Write here..."></div></div>
+    <div id="p7" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p7','normal')">Normal</button><button class="font-btn" onclick="setFont('p7','cursive')">✒ Cursive</button></span></div><div id="write-p7" class="write-area normal" contenteditable="true" data-placeholder="Write here..."></div></div>
+    <div id="p8" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p8','normal')">Normal</button><button class="font-btn" onclick="setFont('p8','cursive')">✒ Cursive</button></span></div><div id="write-p8" class="write-area normal" contenteditable="true" data-placeholder="Write here..."></div></div>
+    <div id="p9" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p9','normal')">Normal</button><button class="font-btn" onclick="setFont('p9','cursive')">✒ Cursive</button></span></div><div id="write-p9" class="write-area normal" contenteditable="true" data-placeholder="Write here..."></div></div>
+    <div id="p10" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p10','normal')">Normal</button><button class="font-btn" onclick="setFont('p10','cursive')">✒ Cursive</button></span></div><div id="write-p10" class="write-area normal" contenteditable="true" data-placeholder="Write here..."></div></div>
+    <div id="p11" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p11','normal')">Normal</button><button class="font-btn" onclick="setFont('p11','cursive')">✒ Cursive</button></span></div><div id="write-p11" class="write-area normal" contenteditable="true" data-placeholder="Write here..."></div></div>
+    <div id="p12" class="page blank"><div class="date-top"><span>Date:</span><span><button class="font-btn" onclick="setFont('p12','normal')">Normal</button><button class="font-btn" onclick="setFont('p12','cursive')">✒ Cursive</button></span></div><div id="write-p12" class="write-area normal" contenteditable="true" data-placeholder="— Beneath the Willow — To be continued..."></div></div>
   </div>
 </div>
-<div class="btns"><button onclick="prev()">← Prev</button><button onclick="next()">Next →</button></div>
-
+<div class="btns"><button onclick="prev()">← Prev</button><button onclick="next()">Next →</button><button onclick="saveAll()" style="background:#8B6E1E;">💾 Save</button><button onclick="clearAll()" style="background:#c0392b;">Clear</button></div>
 <audio id="flipSound" preload="auto" src="https://cdn.pixabay.com/audio/2022/03/10/audio_c8c8a73467.mp3"></audio>
-
 <script>
-let current = 0;
-const pages = [document.getElementById('cover'),document.getElementById('p1'),document.getElementById('p2'),document.getElementById('p3'),document.getElementById('p4'),document.getElementById('p5'),document.getElementById('p6'),document.getElementById('p7'),document.getElementById('p8'),document.getElementById('p9'),document.getElementById('p10'),document.getElementById('p11'),document.getElementById('p12')];
-const flipAudio = document.getElementById('flipSound');
-let audioCtx;
-function playFlip(){
-  try{
-    if(flipAudio){
-      flipAudio.currentTime = 0;
-      flipAudio.volume = 0.5;
-      flipAudio.play();
-    }
-  }catch(e){
-    if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    const o = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    o.frequency.value = 900;
-    o.connect(g); g.connect(audioCtx.destination);
-    g.gain.setValueAtTime(0.2, audioCtx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime+0.12);
-    o.start(); o.stop(audioCtx.currentTime+0.12);
-  }
-}
-function next(){
-  if(current < pages.length){
-    playFlip();
-    const p = pages[current];
-    p.style.zIndex = 100 + current;
-    p.classList.add('flipped');
-    current++;
-    setTimeout(updateZ, 900);
-  }
-}
-function prev(){
-  if(current > 0){
-    playFlip();
-    current--;
-    pages[current].classList.remove('flipped');
-    updateZ();
-  }
-}
-function updateZ(){
-  pages.forEach((p, idx) => {
-    if(idx < current) p.style.zIndex = idx;
-    else p.style.zIndex = pages.length - idx + 10;
-  });
-}
+let current=0;
+const pages=[document.getElementById('cover'),document.getElementById('p1'),document.getElementById('p2'),document.getElementById('p3'),document.getElementById('p4'),document.getElementById('p5'),document.getElementById('p6'),document.getElementById('p7'),document.getElementById('p8'),document.getElementById('p9'),document.getElementById('p10'),document.getElementById('p11'),document.getElementById('p12')];
+const flipAudio=document.getElementById('flipSound');
+function playFlip(){try{flipAudio.currentTime=0;flipAudio.volume=0.5;flipAudio.play();}catch(e){}}
+function next(){if(current<pages.length){playFlip();pages[current].style.zIndex=100+current;pages[current].classList.add('flipped');current++;setTimeout(updateZ,900);}}
+function prev(){if(current>0){playFlip();current--;pages[current].classList.remove('flipped');updateZ();}}
+function updateZ(){pages.forEach((p,idx)=>{if(idx<current)p.style.zIndex=idx;else p.style.zIndex=pages.length-idx+10;});}
 updateZ();
+function setFont(id,style){
+  const el=document.getElementById('write-'+id);
+  if(style==='cursive'){el.classList.remove('normal');el.classList.add('cursive');}
+  else{el.classList.remove('cursive');el.classList.add('normal');}
+  el.focus(); saveAll();
+}
+function loadAll(){
+  for(let i=3;i<=12;i++){
+    const el=document.getElementById('write-p'+i);
+    const saved=localStorage.getItem('willow-p'+i);
+    const font=localStorage.getItem('willow-font-p'+i);
+    if(saved) el.innerHTML=saved;
+    if(font==='cursive'){el.classList.add('cursive');el.classList.remove('normal');}
+    else{el.classList.add('normal');el.classList.remove('cursive');}
+  }
+}
+function saveAll(){
+  for(let i=3;i<=12;i++){
+    const el=document.getElementById('write-p'+i);
+    localStorage.setItem('willow-p'+i,el.innerHTML);
+    localStorage.setItem('willow-font-p'+i,el.classList.contains('cursive')?'cursive':'normal');
+  }
+}
+function clearAll(){if(confirm('Clear all notes?')){for(let i=3;i<=12;i++){localStorage.removeItem('willow-p'+i);localStorage.removeItem('willow-font-p'+i);document.getElementById('write-p'+i).innerHTML='';}}}
+document.querySelectorAll('.write-area').forEach(el=>{
+  el.addEventListener('input',()=>{
+    localStorage.setItem('willow-'+el.id.replace('write-',''),el.innerHTML);
+  });
+});
+loadAll();
 </script>
 </body>
 </html>
