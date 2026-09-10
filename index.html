@@ -5,37 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beneath the Willow</title>
 <style>
-body{margin:0;background:#1a2210;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:Georgia, serif;}
-.book{margin-top:30px;width:90%;max-width:350px;height:520px;position:relative;}
-.cover{width:100%;height:100%;border-radius:12px;box-shadow:0 15px 40px rgba(0,0,0,0.6);cursor:pointer;overflow:hidden;position:relative;}
-.cover img{width:100%;height:100%;object-fit:cover;display:block;}
-.page{width:100%;height:100%;background:#fdf6e3;border-radius:12px;padding:25px;box-sizing:border-box;color:#3d2b1f;line-height:2;display:none;box-shadow:0 15px 40px rgba(0,0,0,0.4);background-image: repeating-linear-gradient(transparent, transparent 28px, #e7d5b3 28px, #e7d5b3 29px);}
-.page.active{display:block;}
-.page h2{color:#8B6914;}
-.signature{text-align:right;font-style:italic;color:#8B6914;margin-top:40px;font-size:20px;}
-.btns{margin:20px;display:flex;gap:15px;}
-.btns button{background:#8B6914;color:#fdf6e3;border:none;padding:12px 22px;border-radius:25px;font-weight:bold;cursor:pointer;}
+body{margin:0;background:#121a0a;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:Georgia, serif;}
+.book-wrap{width:92%;max-width:380px;margin-top:25px;aspect-ratio:3/4.5;position:relative;}
+.cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;border-radius:14px;overflow:hidden;display:none;}
+.cover{display:block;box-shadow:0 20px 50px rgba(0,0,0,0.7);}
+.cover img{width:100%;height:100%;object-fit:cover;}
+.page{display:none;background:#fdf6e3;padding:28px;box-sizing:border-box;color:#3d2b1f;line-height:2.1;font-size:15px;background-image: repeating-linear-gradient(transparent, transparent 28px, #e8d5b0 28px, #e8d5b0 29px);}
+.page.active{display:block;box-shadow:0 20px 50px rgba(0,0,0,0.5);}
+.page h2{color:#8B6914;margin-top:5px;}
+.signature{text-align:right;font-style:italic;color:#8B6914;font-size:20px;margin-top:60px;}
+.btns{display:flex;gap:18px;margin-top:22px;}
+.btns button{background:#8b6e1e;color:#fff3c2;border:none;padding:13px 28px;border-radius:28px;font-weight:bold;font-size:14px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
 </style>
 </head>
 <body>
 
-<div class="book">
-  <!-- COVER - NOW WITH IMG TAG -->
-  <div id="cover" class="cover" onclick="openBook()">
-    <img src="assets/beneath-the-willow.png" alt="Beneath the Willow Cover">
+<div class="book-wrap">
+  <div id="cover" class="cover">
+    <img src="assets/beneath-the-willow.png">
   </div>
-
   <div id="p1" class="page">
     <h2>Dear Diary,</h2>
     <p>Beneath the willow, I find peace...</p>
     <p>This diary belongs to Tsulalu.</p>
     <div class="signature">Tsulalu</div>
   </div>
-
   <div id="p2" class="page">
-    <p>Today I felt...</p>
-    <p>Write here...</p>
-    <div class="signature">Tsulalu</div>
+    <p>Date: ___ / ___ / ___</p>
+    <p>Write your thoughts here...</p>
   </div>
 </div>
 
@@ -45,10 +42,16 @@ body{margin:0;background:#1a2210;display:flex;flex-direction:column;align-items:
 </div>
 
 <script>
-let page=0;
-function openBook(){ document.getElementById('cover').style.display='none'; document.getElementById('p1').classList.add('active'); page=1; }
-function next(){ if(page==0) openBook(); else if(page==1){ document.getElementById('p1').classList.remove('active'); document.getElementById('p2').classList.add('active'); page=2; } }
-function prev(){ if(page==2){ document.getElementById('p2').classList.remove('active'); document.getElementById('p1').classList.add('active'); page=1; } else if(page==1){ document.getElementById('p1').classList.remove('active'); document.getElementById('cover').style.display='block'; page=0; } }
+let i=0; //0=cover,1=p1,2=p2
+function show(){
+  document.getElementById('cover').style.display = i==0 ? 'block' : 'none';
+  document.getElementById('p1').classList.toggle('active', i==1);
+  document.getElementById('p2').classList.toggle('active', i==2);
+}
+function next(){ if(i<2){i++; show();} }
+function prev(){ if(i>0){i--; show();} }
+show();
 </script>
+
 </body>
 </html>
