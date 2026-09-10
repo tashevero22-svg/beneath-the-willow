@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #20290f;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.poster {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #20290f;
+}
+
+.poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 768px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (min-width: 768px) {
+  .poster img {
+    width: min(100%, 768px);
+  }
+}
