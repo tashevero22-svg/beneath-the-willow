@@ -6,34 +6,44 @@
 <title>Beneath the Willow</title>
 <style>
 body{margin:0;background:#ffffff;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:Georgia, serif;}
-.book-wrap{width:92%;max-width:360px;margin-top:20px;aspect-ratio:3/4.4;position:relative;border-radius:12px;overflow:hidden;box-shadow:0 15px 30px rgba(0,0,0,0.25);}
-.spiral{position:absolute;left:6px;top:0;bottom:0;width:24px;display:flex;flex-direction:column;justify-content:space-between;padding:14px 0;z-index:10;}
-.wire{width:22px;height:11px;position:relative;}
-.wire::before,.wire::after{content:'';position:absolute;left:0;width:20px;height:5px;border:1.3px solid #000;border-radius:50%;background:transparent;}
-.wire::before{top:0;}
-.wire::after{top:4px;}
-.pages{width:100%;height:100%;position:relative;}
+.book-wrap{width:92%;max-width:360px;margin-top:20px;aspect-ratio:3/4.4;position:relative;border-radius:0 14px 14px 0;display:flex;}
+.pages{flex:1;margin-left:14px;position:relative;border-radius:0 14px 14px 0;overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,0.3);}
 .cover,.page{width:100%;height:100%;position:absolute;top:0;left:0;display:none;}
 .cover{display:block;}
-.cover img{width:100%;height:100%;object-fit:cover;}
-.page{display:none;background:#fdf6e3;padding:26px;box-sizing:border-box;color:#3d2b1f;line-height:2.1;}
+.cover img{width:100%;height:100%;object-fit:cover;border-radius:0 14px 14px 0;}
+.page{display:none;background:#fdf6e3;padding:26px;box-sizing:border-box;color:#3d2b1f;line-height:2.1;font-size:14.5px;}
 .page.active{display:block;}
-.btns{display:flex;gap:16px;margin-top:20px;}
+/* DARK OLIVE SPINE */
+.spine{position:absolute;left:0;top:0;bottom:0;width:16px;background:#121a0a;z-index:2;border-radius:6px 0 0 6px;display:flex;flex-direction:column;justify-content:space-between;padding:16px 0;align-items:center;}
+.spine span{width:10px;height:12px;background:#000;border-radius:2px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.9), 0 0.5px 0 rgba(255,255,255,0.1);}
+/* HALF IN HALF OUT WIRES */
+.spiral{position:absolute;left:-10px;top:0;bottom:0;width:40px;display:flex;flex-direction:column;justify-content:space-between;padding:14px 0;z-index:10;pointer-events:none;}
+.wire{width:38px;height:16px;position:relative;}
+.wire::before,.wire::after{content:'';position:absolute;left:5px;width:26px;height:7px;border:1.6px solid #0a0a0a;border-radius:50%;}
+.wire::before{top:0;background:linear-gradient(to bottom, #222, #000);}
+.wire::after{top:6px;background:linear-gradient(to bottom, #222, #000);}
+.btns{display:flex;gap:16px;margin-top:22px;}
 .btns button{background:#8b6e1e;color:#fff3c2;border:none;padding:12px 26px;border-radius:28px;font-weight:bold;cursor:pointer;}
 </style>
 </head>
 <body>
 
 <div class="book-wrap">
-  <!-- SMALL BLACK RINGS ON TOP OF DARK OLIVE -->
+  <!-- Dark olive spine with holes -->
+  <div class="spine">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <!-- Half in half out rings -->
   <div class="spiral">
     <div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div>
     <div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div><div class="wire"></div>
   </div>
+
   <div class="pages">
     <div id="cover" class="cover"><img src="assets/beneath-the-willow.png"></div>
-    <div id="p1" class="page"><h2>Dear Diary,</h2><p>This belongs to Tsulalu.</p></div>
-    <div id="p2" class="page">Date: ___ / ___ / ___</div>
+    <div id="p1" class="page"><h2 style="color:#8B6914;margin:0 0 12px;">Dear Diary,</h2><p>Beneath the willow, I find peace...</p><p style="margin-top:40px;">This diary belongs to Tsulalu.</p></div>
+    <div id="p2" class="page"><p><b>Date:</b> ___ / ___ / ___</p><p>Write your thoughts here...</p></div>
   </div>
 </div>
 
